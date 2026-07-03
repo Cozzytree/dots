@@ -1,0 +1,81 @@
+[global]
+    # Display
+    monitor = 0
+    follow = mouse
+
+    # Geometry
+    width = 350
+    height = 150
+    origin = top-right
+    offset = 20x50
+
+    # Progress bar
+    progress_bar = true
+    progress_bar_height = 8
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+
+    # Appearance
+    transparency = 0
+    separator_height = 2
+    padding = 16
+    horizontal_padding = 16
+    text_icon_padding = 16
+    frame_width = 2
+    frame_color = "#161615"
+    separator_color = frame
+    corner_radius = 8
+    gap_size = 6
+
+    # Text
+    font = Hack Nerd Font 11
+    line_height = 4
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+    word_wrap = yes
+
+    # Icons
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 48
+
+    # History
+    sticky_history = yes
+    history_length = 20
+
+    # Misc
+    sort = yes
+    idle_threshold = 120
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[urgency_low]
+    background = "#040402"
+    foreground = "#d4daf0"
+    frame_color = "#161615"
+    highlight = "#f5e642"
+    timeout = 5
+
+[urgency_normal]
+    background = "#040402"
+    foreground = "#d4daf0"
+    frame_color = "#161615"
+    highlight = "#f5e642"
+    timeout = 10
+
+[urgency_critical]
+    background = "#040402"
+    foreground = "#ff5050"
+    frame_color = "#ff5050"
+    highlight = "#ff5050"
+    timeout = 0
