@@ -10,10 +10,10 @@
     "A dark theme based on the simple.json Zed theme."
 
   ;; name        default   256       16
-  ((bg         '("#020100" nil       nil            ))
+  ((bg         '("#020200" nil       nil            ))
    (bg-alt     '("#0b0b0a" nil       nil            ))
    (base0      '("#0b0b0a" "black"   "black"        ))
-   (base1      '("#020100" "#1e1e1e" "brightblack"  ))
+   (base1      '("#020200" "#1e1e1e" "brightblack"  ))
    (base2      '("#161615" "#2e2e2e" "brightblack"  ))
    (base3      '("#444b4a" "#262626" "brightblack"  ))
    (base4      '("#787c99" "#3f3f3f" "brightblack"  ))
@@ -65,7 +65,7 @@
   (
    (lazy-highlight :background base2 :foreground fg)
    (line-number :foreground "#505048" :background bg)
-   (line-number-current-line :foreground "#ef2fff" :background bg :weight 'semi-bold)
+   (line-number-current-line :foreground "#ef2fff" :background bg :weight 'bold)
    (hl-line :background bg-alt)
    (solaire-default-face :background bg)
    (solaire-hl-line-face :background bg-alt)
@@ -82,7 +82,7 @@
    (markdown-pre-face :background base0)
    (eldoc-box-body :background bg)
    (eldoc-box-border :background base2)
-   (font-lock-function-name-face :foreground functions :weight 'semi-bold)
+   (font-lock-function-name-face :foreground functions :weight 'bold)
    (font-lock-type-face :foreground type :weight 'semi-bold)
    (font-lock-variable-name-face :foreground fg)
    (font-lock-property-name-face :foreground fg)

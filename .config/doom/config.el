@@ -21,7 +21,9 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Iosevka KG Terminal" :size 18 :width 'expanded)
+;; (setq doom-font (font-spec :family "Iosevka KG Terminal" :size 17 :weight 'semi-bold :width 'expanded)
+(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 18)
+      doom-symbol-font (font-spec :family "jetBrainsMono Nerd Font" :size 18)
       doom-variable-pitch-font (font-spec :family "Adwaita Sans" :size 18))
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -33,11 +35,14 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" doom-user-dir))
-(setq doom-theme 'doom-gruvbox-simple)
+(setq doom-theme 'doom-naysayer)
+
+(add-to-list 'exec-path (expand-file-name "~/.local/share/mise/shims/"))
+(setenv "PATH" (concat (expand-file-name "~/.local/share/mise/shims:") (getenv "PATH")))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type 1)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -89,7 +94,6 @@
    :i "M-<up>"    #'drag-stuff-up
    :i "M-<down>"  #'drag-stuff-down))
 
-
 (defun my/setup-typescript ()
   (setq-local typescript-ts-mode-indent-offset 3)
   (setq-local typescript-mode-indent-offset 3))
@@ -110,18 +114,18 @@
             (setq-local typescript-ts-mode-indent-offset 3)
             (setq-local indent-tabs-mode nil)))
 
-;; (after! treesit
-;;   (setq treesit-language-source-alist
-;;         '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-;;           (css "https://github.com/tree-sitter/tree-sitter-css")
-;;           (html "https://github.com/tree-sitter/tree-sitter-html")
-;;           (javascript "https://github.com/tree-sitter/tree-sitter-javascript")
-;;           (json "https://github.com/tree-sitter/tree-sitter-json")
-;;           (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-;;           (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-;;           (rust "https://github.com/tree-sitter/tree-sitter-rust")
-;;           (toml "https://github.com/tree-sitter/tree-sitter-toml")
-;;           (yaml "https://github.com/tree-sitter/tree-sitter-yaml"))))
+(after! treesit
+  (setq treesit-language-source-alist
+        '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+          (css "https://github.com/tree-sitter/tree-sitter-css")
+          (html "https://github.com/tree-sitter/tree-sitter-html")
+          (javascript "https://github.com/tree-sitter/tree-sitter-javascript")
+          (json "https://github.com/tree-sitter/tree-sitter-json")
+          (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+          (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+          (rust "https://github.com/tree-sitter/tree-sitter-rust")
+          (toml "https://github.com/tree-sitter/tree-sitter-toml")
+          (yaml "https://github.com/tree-sitter-grammars/tree-sitter-yaml"))))
 
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
@@ -172,6 +176,8 @@
   (savehist-mode 1))
 
 (after! corfu
+  (global-corfu-mode)
+  (add-hook 'after-change-major-mode-hook #'corfu-mode)
   ;; Add dabbrev (text completion from open buffers) to the global completion list
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (corfu-popupinfo-mode 1)
@@ -216,5 +222,22 @@
         doom-modeline-buffer-encoding nil
         doom-modeline-icon t
         doom-modeline-major-mode-icon t
-        doom-modeline-height 35)) ;; Make it slightly taller for a premium feel
-(+word-wrap-mode 1)
+        doom-modeline-height 30)) ;; Make it slightly taller for a premium feel
+
+(+global-word-wrap-mode 1)
+
+(after! vterm
+  (setq vterm-shell "/bin/bash"))
+
+;; 
+;; Dumb Jump explicit configuration
+;; 
+(use-package! dumb-jump
+  :config
+  ;; Use ripgrep for faster searching
+  (setq dumb-jump-force-searcher 'rg)
+  (setq dumb-jump-aggressive nil)
+  :bind (("M-g j" . dumb-jump-go)
+         ("M-g o" . dumb-jump-go-other-window)
+         ("M-g b" . dumb-jump-back)
+         ("M-g i" . dumb-jump-go-prompt)))

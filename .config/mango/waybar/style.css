@@ -1,0 +1,38 @@
+* {
+   border: none;
+   border-radius: 0;
+   font-family: "Iosevka KG Terminal Md Ex", monospace;
+   font-size: 13px;
+   min-height: 0;
+}
+
+window#waybar {
+   background-color: #020200;
+   color: #e5e5e5;
+}
+
+#workspaces button {
+   padding: 0 4px;
+   background-color: transparent;
+   color: #888888;
+   border-top: 2px solid transparent;
+}
+
+#workspaces button:hover {
+   background-color: #333333;
+   color: #e5e5e5;
+}
+
+#workspaces button.focused,
+#workspaces button.active {
+   background-color: #282828;
+   color: #ffffff;
+   border-top: 2px solid #5e81ac; /* Simple i3-like highlight */
+}
+
+#clock,
+#memory,
+#network,
+#tray {
+   padding: 0 10px;
+}
