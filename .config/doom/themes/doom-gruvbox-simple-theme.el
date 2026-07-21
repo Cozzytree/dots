@@ -70,8 +70,16 @@
    (solaire-default-face :background bg)
    (solaire-hl-line-face :background bg-alt)
    (vterm-color-default :background bg :foreground fg)
-   (mode-line :background "#181816" :foreground "#e0e0df" :box nil)
-   (mode-line-inactive :background "#0c0c0b" :foreground "#70706d" :box nil)
+   (mode-line :background bg :foreground fg :box '(:line-width 1 :color "#3c3836" :style nil))
+   (mode-line-inactive :background bg :foreground base5 :box '(:line-width 1 :color "#161615" :style nil))
+   (header-line :background bg :foreground fg-alt :underline '(:color "#3c3836"))
+
+   ;; Doom modeline specific colors to prevent blending
+   (doom-modeline-buffer-file :foreground fg :weight 'bold)
+   (doom-modeline-buffer-path :foreground base5 :weight 'bold)
+   (doom-modeline-buffer-modified :foreground orange :weight 'bold)
+   (doom-modeline-buffer-project-root :foreground blue :weight 'bold)
+   (doom-modeline-bar :background blue)
    (corfu-default :background "#0a0a09")
    (corfu-current :background "#181817")
    (company-tooltip :background "#0a0a09")

@@ -2,7 +2,7 @@
 
 case "$1" in
     focus)
-        /home/cozzycode/.local/bin/zoomer focus --min-radius=10 --max-radius=500
+        /home/cozzycode/.local/bin/zoomer focus --min-radius=10
         ;;
     screen)
         /home/cozzycode/.local/bin/zoomer screen

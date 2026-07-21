@@ -10,7 +10,8 @@ export OSH='/home/cozzycode/.oh-my-bash'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="robbyrussell"
+# OSH_THEME="garo"
+OSH_THEME="candy"
 # OSH_THEME="rr"
 
 # If you set OSH_THEME to "random", you can ignore themes you don't like.
@@ -95,7 +96,7 @@ completions=(
   git
   composer
   ssh
-)
+ )
 
 # Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
 # Custom aliases may be added to ~/.oh-my-bash/custom/aliases/
@@ -109,7 +110,10 @@ aliases=(
 # Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  git
+  progress
+)
 
 # Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
 # Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
@@ -157,3 +161,4 @@ alias c="clear"
 alias dk="docker"
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
+export TERM=xterm-256color

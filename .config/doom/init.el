@@ -33,7 +33,7 @@
        doom              ; what makes doom look the way it does
        ;; dashboard         ; a nifty splash screen for emacs
        ;;doom-quit         ; doom quit-message prompts when you quit emacs
-       (emoji +unicode)  ; 🙂
+       ;; (emoji +unicode)  ; 🙂
        hl-todo           ; highlight todo/fixme/note/deprecated/hack/review
        ;; indent-guides     ; highlighted indent columns
        ligatures         ; ligatures and symbols to make your code pretty again
@@ -43,14 +43,14 @@
        ;; neotree           ; a project drawer, like nerdtree for vim
        ophints           ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
-       smooth-scroll     ; So smooth you won't believe it's not butter
+       ;; smooth-scroll     ; So smooth you won't believe it's not butter
        ;; tabs              ; a tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        (vc-gutter +pretty) ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        ;;window-select     ; visually switch windows
-       workspaces        ; tab emulation, persistence & separate workspaces
+       ;; workspaces        ; tab emulation, persistence & separate workspaces
        ;;zen               ; distraction-free coding or writing
 
        :editor
@@ -65,7 +65,7 @@
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
-       (whitespace +guess +trim)  ; a butler for your whitespace
+       ;; (whitespace +guess +trim)  ; a butler for your whitespace
        word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
@@ -95,7 +95,7 @@
        ;;debugger          ; stepping through code, to help you add bugs
        ;;direnv
        ;;docker
-       ;;editorconfig      ; let someone else argue about tabs vs spaces
+       editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation

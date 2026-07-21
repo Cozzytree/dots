@@ -22,7 +22,8 @@
 ;; accept. For example:
 ;;
 ;; (setq doom-font (font-spec :family "Iosevka KG Terminal" :size 17 :weight 'semi-bold :width 'expanded)
-(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 18)
+;; (setq doom-font (font-spec :family "Iosevka KG Terminal" :size 18)
+(setq doom-font (font-spec :family "Hack" :size 17)
       doom-symbol-font (font-spec :family "jetBrainsMono Nerd Font" :size 18)
       doom-variable-pitch-font (font-spec :family "Adwaita Sans" :size 18))
 
@@ -35,7 +36,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" doom-user-dir))
-(setq doom-theme 'doom-naysayer)
+;; (setq doom-theme 'doom-subtle-dark)
+(setq doom-theme 'doom-gruvbox-simple)
 
 (add-to-list 'exec-path (expand-file-name "~/.local/share/mise/shims/"))
 (setenv "PATH" (concat (expand-file-name "~/.local/share/mise/shims:") (getenv "PATH")))
@@ -49,7 +51,7 @@
 (setq org-directory "~/org/")
 
 
-(setq-default tab-width 3
+(setq-default tab-width 2
               indent-tabs-mode nil)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -95,8 +97,8 @@
    :i "M-<down>"  #'drag-stuff-down))
 
 (defun my/setup-typescript ()
-  (setq-local typescript-ts-mode-indent-offset 3)
-  (setq-local typescript-mode-indent-offset 3))
+  (setq-local typescript-ts-mode-indent-offset 2)
+  (setq-local typescript-mode-indent-offset 2))
 
 (add-hook 'typescript-ts-mode-hook #'my/setup-typescript)
 (add-hook 'typescript-mode-hook #'my/setup-typescript)
@@ -104,14 +106,14 @@
 
 (add-hook 'typescript-mode-hook
           (lambda ()
-            (setq-local tab-width 3)
-            (setq-local typescript-indent-level 3)
+            (setq-local tab-width 2)
+            (setq-local typescript-indent-level 2)
             (setq-local indent-tabs-mode nil)))
 
 (add-hook 'typescript-ts-mode-hook
           (lambda ()
-            (setq-local tab-width 3)
-            (setq-local typescript-ts-mode-indent-offset 3)
+            (setq-local tab-width 2)
+            (setq-local typescript-ts-mode-indent-offset 2)
             (setq-local indent-tabs-mode nil)))
 
 (after! treesit
@@ -133,18 +135,61 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-ts-mode))
 
 (setq-default line-spacing 0)
-(breadcrumb-mode 1)
+;; Enable breadcrumbs only for programming modes to save performance elsewhere
+;; Customizing it to only show the function/type (imenu) and hide the project path
+(defun my/setup-breadcrumb ()
+  (require 'breadcrumb)
+  (setq header-line-format '(:eval (breadcrumb-imenu-crumbs))))
+(add-hook 'prog-mode-hook #'my/setup-breadcrumb)
 
-(after! whitespace
-  (setq whitespace-style '(face spaces tabs space-mark tab-mark trailing))
-  (custom-set-faces!
-    '(whitespace-space :foreground "#252525" :background unspecified)
-    '(whitespace-tab :foreground "#252525" :background unspecified)
-    '(whitespace-trailing :background "#ff5050")))
+;; (after! whitespace
+;;   (setq whitespace-style '(face spaces tabs space-mark tab-mark trailing))
+;;   (custom-set-faces!
+;;     '(whitespace-space :foreground "#252525" :background unspecified)
+;;     '(whitespace-tab :foreground "#252525" :background unspecified)
+;;     '(whitespace-trailing :background "#ff5050")))
 
-(global-whitespace-mode 0)
+;; (whitespace-mode -1)
 
 (after! eglot
+  ;; 1. Automatically turn on inlay hints when a server attaches
+  ;; (add-hook 'eglot-managed-mode-hook #'eglot-inlay-hints-mode)
+
+  ;; 2. Clear out legacy node-js wrappers from Eglot's hardcoded fallback list
+  (setq eglot-server-programs
+        (assoc-delete-all '(typescript-mode typescript-ts-mode tsx-ts-mode js-mode js-ts-mode)
+                          eglot-server-programs))
+
+  ;; 3. Force Eglot to communicate natively with TypeScript 7
+  (add-to-list 'eglot-server-programs
+               '((typescript-mode typescript-ts-mode tsx-ts-mode js-mode js-ts-mode)
+                 "tsc" "--lsp" "-stdio"
+                 :initializationOptions
+                 (:preferences
+                  (:includeInlayParameterNameHints "all"
+                   :includeInlayVariableTypeHints nil
+                   :includeInlayFunctionLikeReturnTypeHints nil
+                   :includeInlayPropertyDeclarationTypeHints nil
+                   :includeInlayEnumMemberValueHints nil))))
+
+  (setq-default eglot-workspace-configuration
+                '(:typescript
+                  (:inlayHints
+                   (:includeInlayParameterNameHints "all"
+                    :includeInlayVariableTypeHints nil
+                    :includeInlayFunctionLikeReturnTypeHints nil
+                    :includeInlayPropertyDeclarationTypeHints nil
+                    :includeInlayEnumMemberValueHints nil))
+                  :gopls
+                  (:hints
+                   (:assignVariableTypes t
+                    :compositeLiteralFields t
+                    :compositeLiteralTypes t
+                    :constantValues t
+                    :functionTypeParameters t
+                    :parameterNames t
+                    :rangeVariableTypes t))))
+
   ;; Disable logging for better performance
   (setq eglot-events-buffer-size 0)
 
@@ -152,7 +197,10 @@
   (setq eglot-autoshutdown t)
 
   ;; Increase read size for faster JSON parsing
-  (setq read-process-output-max (* 104 1024)))
+  (setq read-process-output-max (* 1024 1024)) ;; 1MB for faster LSP IPC
+  
+  ;; Don't block the UI to sync edits with the LSP server
+  (setq eglot-sync-connect 0))
 
 ;; Prevent constant UI freezing from documentation lookups
 (setq eldoc-idle-delay 0.5)
@@ -176,17 +224,28 @@
   (savehist-mode 1))
 
 (after! corfu
-  (global-corfu-mode)
-  (add-hook 'after-change-major-mode-hook #'corfu-mode)
+  ;; Enable corfu only in programming modes
+  ;; (add-hook 'prog-mode-hook #'corfu-mode)
+  (add-hook 'prog-mode-hook
+            (lambda ()
+              (add-to-list 'completion-at-point-functions #'cape-dabbrev t)
+              (add-to-list 'completion-at-point-functions #'cape-file t)
+              (add-to-list 'completion-at-point-functions #'cape-keyword t)))
+  
+  (add-hook 'corfu-mode-hook #'corfu-history-mode)
   ;; Add dabbrev (text completion from open buffers) to the global completion list
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+
+  ;; Popup info
+  (add-hook 'corfu-mode-hook #'corfu-popupinfo-mode)
+
   (corfu-popupinfo-mode 1)
   (setq corfu-popupinfo-delay 0.1)
   (setq corfu-popupinfo-max-width 70
-        corfu-popupinfo-max-height 18)
+        corfu-popupinfo-max-height 17)
 
   (setq corfu-auto t                 ;; Enable auto completion
-        corfu-auto-delay 0.0         ;; Make it pop up instantly
+        corfu-auto-delay 0.05        ;; Slight delay to prevent typing micro-stutters
         corfu-auto-prefix 1          ;; Pop up after typing just 1 character
         corfu-scroll-margin 2        ;; Scroll margin at the top/bottom of the menu
         corfu-count 14               ;; Show more items in the popup (default is 10)
@@ -202,7 +261,7 @@
 
 
 ;; Add padding to the edges of Emacs
-(add-to-list 'default-frame-alist '(internal-border-width . 5))
+(add-to-list 'default-frame-alist '(internal-border-width . 0))
 (custom-set-faces! '(internal-border :background "#060500"))
 
 ;; Minimal window dividers
@@ -212,7 +271,8 @@
 (window-divider-mode 1)
 
 ;; Defer syntax highlighting while scrolling
-(setq jit-lock-defer-time 0)
+;; Defer syntax highlighting slightly to make typing incredibly smooth (Zed-like)
+(setq jit-lock-defer-time 0.05)
 (setq jit-lock-stealth-time 1)
 
 (global-so-long-mode 1)
@@ -224,7 +284,8 @@
         doom-modeline-major-mode-icon t
         doom-modeline-height 30)) ;; Make it slightly taller for a premium feel
 
-(+global-word-wrap-mode 1)
+;; Disable global word wrap (expensive in code buffers). Doom enables it in text-modes automatically.
+;; (+global-word-wrap-mode 1)
 
 (after! vterm
   (setq vterm-shell "/bin/bash"))

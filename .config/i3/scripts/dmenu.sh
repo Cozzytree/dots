@@ -9,8 +9,8 @@ export LC_ALL=en_US.UTF-8
 BG="#040402"
 FG="#d4daf0"
 SEL_BG="#161615"
-SEL_FG="#f5e642"
-FONT="Iosevka KG Terminal Md Ex:size=14"
+SEL_FG="#efefef"
+FONT="Hack:size=11"
 
 dmenu_run -i \
     -fn "$FONT" \

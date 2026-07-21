@@ -10,10 +10,10 @@
     "A minimalist dark theme relying on font weights and subtle foreground variations."
 
   ;; Base palette
-  ((bg         '("#080808" nil       nil            ))
+  ((bg         '("#050502" nil       nil            ))
    (bg-alt     '("#121212" nil       nil            ))
    (base0      '("#121212" "black"   "black"        ))
-   (base1      '("#080808" "#1e1e1e" "brightblack"  ))
+   (base1      '("#050502" "#1e1e1e" "brightblack"  ))
    (base2      '("#1c1c1c" "#2e2e2e" "brightblack"  ))
    (base3      '("#333333" "#262626" "brightblack"  ))
    (base4      '("#444444" "#3f3f3f" "brightblack"  ))
@@ -36,7 +36,7 @@
    (green      '("#9ece6a" "#99bb66" "green"        ))
    (teal       '("#2ac3de" "#44b9b1" "brightgreen"  ))
    (yellow     '("#f5e642" "#ecbe7b" "yellow"       ))
-   (blue       '("#b4f9f8" "#51afef" "brightblue"   ))
+   (blue       '("#b2e9ff" "#51afef" "brightblue"   ))
    (dark-blue  '("#0db9d7" "#2257A0" "blue"         ))
    (magenta    '("#bb9af7" "#c678dd" "brightmagenta"))
    (violet     '("#a9b1d5" "#a9a1e1" "magenta"      ))
@@ -47,10 +47,10 @@
    (functions      blue)
    (keywords       violet)
    (methods        blue)
-   (type           teal)
+   (type           fg-alt)
    (variables      fg)
    (constants      fg-light)
-   (comments       base5)
+   (comments       "#ff50ef")
    (doc-comments   base5)
    (operators      fg)
    (numbers        fg)
@@ -79,16 +79,27 @@
    (font-lock-string-face :foreground strings)
    (font-lock-comment-face :foreground comments :slant 'italic)
 
+   (cursor :background "#f5e642")
+
    (lazy-highlight :background base2 :foreground fg)
    ;; UI elements
-   (line-number :foreground base4 :background bg)
+   (line-number :foreground "#202020" :background bg)
    (line-number-current-line :foreground fg-light :background bg :weight 'bold)
    (hl-line :background bg-alt)
    (solaire-default-face :background bg)
    (solaire-hl-line-face :background bg-alt)
    (vterm-color-default :background bg :foreground fg)
-   (mode-line :background "#1a1a1a" :foreground fg :box nil)
-   (mode-line-inactive :background "#0f0f0f" :foreground fg-dark :box nil)
+   (mode-line :background bg :foreground fg :box '(:line-width 1 :color "#333333" :style nil))
+   (mode-line-inactive :background bg :foreground base5 :box '(:line-width 1 :color "#1c1c1c" :style nil))
+   (header-line :background bg :foreground fg-alt :underline '(:color "#333333"))
+
+   ;; Doom modeline specific colors to prevent blending
+   (doom-modeline-buffer-file :foreground fg-light :weight 'bold)
+   (doom-modeline-buffer-path :foreground base6 :weight 'bold)
+   (doom-modeline-buffer-modified :foreground orange :weight 'bold)
+   (doom-modeline-buffer-project-root :foreground blue :weight 'bold)
+   (doom-modeline-bar :background blue)
+
    (corfu-default :background bg-alt)
    (corfu-current :background base2)
    (company-tooltip :background bg-alt)
