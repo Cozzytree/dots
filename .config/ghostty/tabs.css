@@ -1,28 +1,29 @@
 /* Shrink the container size to the absolute minimum */
 headerbar {
-    min-height: 4px;
-    padding: 0px;
-    margin: 0px;
+  min-height: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 /* Strip text labels and extra buttons from the tabs */
 tabbar tabbox tab label, 
 tabbar tabbox tab button {
-    display: none;
-    padding: 0px;
-    margin: 0px;
+  display: none;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
 }
 
 /* Format the inactive tab line indicator */
 tabbar tabbox tab {
-    min-height: 4px;
-    padding: 0px;
-    margin: 0px 2px;
-    background-color: #374151; /* Dark grey line for inactive tabs */
-    border: none;
+  border-radius: 0px;
+  min-height: 0px;
+  padding: 0px;
+  margin: 0px;
+  background-color: #040402; /* Dark grey line for inactive tabs */
 }
 
 /* Highlight the active/focused tab indicator */
 tabbar tabbox tab:selected {
-    background-color: #38bdf8; /* Bright blue line for active tab */
+  border-bottom: 1px solid white;
 }

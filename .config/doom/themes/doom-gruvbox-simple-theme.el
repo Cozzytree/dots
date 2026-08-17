@@ -10,10 +10,10 @@
     "A Gruvbox Hard theme retaining the custom simple background."
 
   ;; name        default   256       16
-  ((bg         '("#000000" nil       nil            ))
+  ((bg         '("#040400" nil       nil            ))
    (bg-alt     '("#0a0a09" nil       nil            ))
    (base0      '("#0a0a09" "black"   "black"        ))
-   (base1      '("#000000" "#1e1e1e" "brightblack"  ))
+   (base1      '("#040400" "#1e1e1e" "brightblack"  ))
    (base2      '("#161615" "#2e2e2e" "brightblack"  ))
    (base3      '("#928374" "#262626" "brightblack"  ))
    (base4      '("#665c54" "#3f3f3f" "brightblack"  ))

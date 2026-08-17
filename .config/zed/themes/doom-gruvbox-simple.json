@@ -61,6 +61,8 @@
         "editor.line_number": "#505048",
         "editor.active_line_number": "#fabd2f",
         "editor.invisible": "#262626",
+        "editor.indent_guide": "#20202000",
+        "editor.indent_guide_active": "#202020",
         "editor.wrap_guide": "#161615",
         "editor.active_wrap_guide": "#262626",
         "editor.document_highlight.read_background": "#161615",

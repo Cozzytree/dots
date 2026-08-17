@@ -1,5 +1,8 @@
 {
-  "icon_theme": "VSCode Icons for Zed (Dark Official Icons)",
+  "scrollbar": {
+    "show": "system",
+  },
+  "icon_theme": "Zed (Default)",
   "disable_ai": true,
   "bottom_dock_layout": "full",
   "current_line_highlight": "line",
@@ -14,10 +17,6 @@
   "file_finder": {
     "modal_max_width": "small",
   },
-  // "prettier": {
-  //    "allowed": true,
-  //    "tabWidth": 3,
-  // },
   "telemetry": {
     "metrics": false,
     "diagnostics": false,
@@ -39,18 +38,22 @@
       "enabled": true,
     },
   },
+  "window_decorations": "server",
   // "use_system_window_tabs": true,
   "title_bar": {
     "button_layout": "platform_default",
     "show_sign_in": false,
     "show_onboarding_banner": false,
+    "show_branch_name": false,
+    "show_menus": false,
+    "show_branch_status_icon": false,
   },
-  "window_decorations": "client",
   "tab_bar": {
     "show_tab_bar_buttons": false,
     "show": true,
   },
   "status_bar": {
+    "show_active_file": true,
     "active_language_button": true,
     "cursor_position_button": true,
     "line_endings_button": false,
@@ -59,11 +62,12 @@
   "auto_update": false,
   "cli_default_open_behavior": "new_window",
   "project_panel": {
+    "indent_size": 15,
     "auto_fold_dirs": false,
     "dock": "left",
   },
   "buffer_line_height": {
-    "custom": 1.3,
+    "custom": 1.2,
   },
   "gutter": {
     "line_numbers": true,
@@ -74,7 +78,7 @@
     "cursor_shape": {},
     "highlight_on_yank_duration": 300,
   },
-  "show_whitespaces": "boundary",
+  "show_whitespaces": null,
   "whitespace_map": {
     "space": ".",
     "tab": ".",
@@ -89,21 +93,24 @@
     "dock": "right",
   },
 
-  "buffer_font_family": "Hack",
-  // "buffer_font_family": "Adwaita Mono",
+  // "buffer_font_family": "CozetteVector",
+  // "buffer_font_family": "scientifica",
+  // "buffer_font_family": "Spleen 32x64",
+  "buffer_font_family": "Terminess Nerd Font",
+  // "buffer_font_family": "JetBrains Mono",
   "buffer_font_features": {
     "calt": true,
     "liga": true,
   },
-  "buffer_font_weight": 400,
-  "ui_font_weight": 400,
-  "ui_font_family": "Hack",
-  "buffer_font_size": 17,
+  "buffer_font_weight":  500,
+  "ui_font_weight": 500,
+  "ui_font_family": "Iosevka KG Terminal",
+  "buffer_font_size": 19,
   "ui_font_size": 16,
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "Doom Gruvbox Simple",
+    "dark": "Doom Subtle Dark",
   },
   "unstable.ui_density": "compact",
   "toolbar": {
@@ -113,8 +120,12 @@
     "quick_actions": false,
     "selections_menu": false,
   },
-
   "lsp": {
+    "zls": {
+      "binary": {
+        "path": "/home/cozzycode/.local/share/mise/installs/zls/latest/zls",
+      },
+    },
     // "typescript-ls": {
     //    "binary": {
     //       "path": "/home/cozzycode/.local/share/mise/installs/node/24.18.0/bin/tsc",
@@ -153,7 +164,7 @@
       },
     },
     "Rust": {
-      "language_servers": [],
+      "language_servers": [""],
       "inlay_hints": {
         "enabled": false,
         "show_value_hints": false,
@@ -215,7 +226,7 @@
         "color": "#ff5050",
       },
       "function": {
-        "font_weight": 500,
+        "font_weight": 600,
       },
       "comment": {},
       "type": {
@@ -248,12 +259,11 @@
 
     "surface.background": "#040400",
     "elevated_surface.background": "#040400",
-    "editor.active_line_number": "#ef2fff",
 
     "tab.active_background": "#0a0a09",
     "tab.inactive_background": "#040400",
-    "editor.indent_guide": "#30303015",
-    "editor.indent_guide_active": "#5a5a5a90",
+    // "editor.indent_guide": "#30303020",
+    // "editor.indent_guide_active": "#5a5a5a80",
     "panel.indent_guide_active": "#252524",
     "status_bar.background": "#040400",
     "border": "#303030",

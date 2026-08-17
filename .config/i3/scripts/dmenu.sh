@@ -7,10 +7,10 @@ export LC_ALL=en_US.UTF-8
 
 # Colors matching the dark theme
 BG="#040402"
-FG="#d4daf0"
-SEL_BG="#161615"
+FG="#efefef"
+SEL_BG="#303029"
 SEL_FG="#efefef"
-FONT="Hack:size=11"
+FONT="jetBrains Mono:size=11"
 
 dmenu_run -i \
     -fn "$FONT" \

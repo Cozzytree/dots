@@ -22,10 +22,10 @@
 ;; accept. For example:
 ;;
 ;; (setq doom-font (font-spec :family "Iosevka KG Terminal" :size 17 :weight 'semi-bold :width 'expanded)
-;; (setq doom-font (font-spec :family "Iosevka KG Terminal" :size 18)
-(setq doom-font (font-spec :family "Hack" :size 17)
-      doom-symbol-font (font-spec :family "jetBrainsMono Nerd Font" :size 18)
-      doom-variable-pitch-font (font-spec :family "Adwaita Sans" :size 18))
+;; (setq doom-font (font-spec :family "Hack" :size 17)
+(setq doom-font (font-spec :family "Terminess Nerd Font" :size 19 :weight 'bold)
+      doom-symbol-font (font-spec :family "JetBrains Mono" :size 17)
+      doom-variable-pitch-font (font-spec :family "Adwaita Sans" :size 17))
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -36,8 +36,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" doom-user-dir))
-;; (setq doom-theme 'doom-subtle-dark)
-(setq doom-theme 'doom-gruvbox-simple)
+(setq doom-theme 'doom-subtle-dark)
+;; (setq doom-theme 'doom-gruvbox-simple)
 
 (add-to-list 'exec-path (expand-file-name "~/.local/share/mise/shims/"))
 (setenv "PATH" (concat (expand-file-name "~/.local/share/mise/shims:") (getenv "PATH")))
@@ -198,7 +198,7 @@
 
   ;; Increase read size for faster JSON parsing
   (setq read-process-output-max (* 1024 1024)) ;; 1MB for faster LSP IPC
-  
+
   ;; Don't block the UI to sync edits with the LSP server
   (setq eglot-sync-connect 0))
 
@@ -210,13 +210,13 @@
   :hook ((prog-mode . indent-bars-mode))
   :config
   (setq
-   indent-bars-color '(highlight :face-bg t :blend 0.08)
+   indent-bars-color '(highlight :face-bg t :blend 0.055)
    indent-bars-pattern "." ; A solid dot creates a continuous, gapless line
    indent-bars-width-frac 0.1
    indent-bars-pad-frac 0.1
    indent-bars-zigzag nil
    indent-bars-color-by-depth nil
-   indent-bars-highlight-current-depth '(:blend 0.9)
+   indent-bars-highlight-current-depth '(:blend 0.65)
    indent-bars-display-on-blank-lines t))
 
 (use-package! savehist
@@ -231,7 +231,7 @@
               (add-to-list 'completion-at-point-functions #'cape-dabbrev t)
               (add-to-list 'completion-at-point-functions #'cape-file t)
               (add-to-list 'completion-at-point-functions #'cape-keyword t)))
-  
+
   (add-hook 'corfu-mode-hook #'corfu-history-mode)
   ;; Add dabbrev (text completion from open buffers) to the global completion list
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
@@ -290,15 +290,12 @@
 (after! vterm
   (setq vterm-shell "/bin/bash"))
 
-;; 
-;; Dumb Jump explicit configuration
-;; 
-(use-package! dumb-jump
-  :config
-  ;; Use ripgrep for faster searching
-  (setq dumb-jump-force-searcher 'rg)
-  (setq dumb-jump-aggressive nil)
-  :bind (("M-g j" . dumb-jump-go)
-         ("M-g o" . dumb-jump-go-other-window)
-         ("M-g b" . dumb-jump-back)
-         ("M-g i" . dumb-jump-go-prompt)))
+;; (use-package! dumb-jump
+;;   :config
+;; Use ripgrep for faster searching
+;; (setq dumb-jump-force-searcher 'rg)
+;; (setq dumb-jump-aggressive nil)
+;; :bind (("M-g j" . dumb-jump-go)
+;;        ("M-g o" . dumb-jump-go-other-window)
+;;        ("M-g b" . dumb-jump-back)
+;;        ("M-g i" . dumb-jump-go-prompt)))
