@@ -1,0 +1,72 @@
+
+@font-face {
+	font-family: 'Lyth Mono Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/LythMono-Light.woff2') format('woff2'), url('TTF/LythMono-Light.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Lyth Mono Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/LythMono-LightItalic.woff2') format('woff2'), url('TTF/LythMono-LightItalic.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Lyth Mono Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/LythMono-Regular.woff2') format('woff2'), url('TTF/LythMono-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Lyth Mono Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/LythMono-Italic.woff2') format('woff2'), url('TTF/LythMono-Italic.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Lyth Mono Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/LythMono-Medium.woff2') format('woff2'), url('TTF/LythMono-Medium.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Lyth Mono Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/LythMono-MediumItalic.woff2') format('woff2'), url('TTF/LythMono-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Lyth Mono Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/LythMono-Bold.woff2') format('woff2'), url('TTF/LythMono-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Lyth Mono Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/LythMono-BoldItalic.woff2') format('woff2'), url('TTF/LythMono-BoldItalic.ttf') format('truetype');
+}

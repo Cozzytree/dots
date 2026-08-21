@@ -10,7 +10,7 @@ BG="#040402"
 FG="#efefef"
 SEL_BG="#303029"
 SEL_FG="#efefef"
-FONT="jetBrains Mono:size=11"
+FONT="Terminus Nerd Font:size=10"
 
 dmenu_run -i \
     -fn "$FONT" \

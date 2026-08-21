@@ -67,7 +67,7 @@
     "dock": "left",
   },
   "buffer_line_height": {
-    "custom": 1.2,
+    "custom": 1.3
   },
   "gutter": {
     "line_numbers": true,
@@ -96,26 +96,26 @@
   // "buffer_font_family": "CozetteVector",
   // "buffer_font_family": "scientifica",
   // "buffer_font_family": "Spleen 32x64",
-  "buffer_font_family": "Terminess Nerd Font",
-  // "buffer_font_family": "JetBrains Mono",
+  // "buffer_font_family": "Terminess Nerd Font Mono",
+  "buffer_font_family": "psudoFont Liga Mono",
   "buffer_font_features": {
     "calt": true,
     "liga": true,
   },
-  "buffer_font_weight":  500,
+  "buffer_font_weight": 500,
   "ui_font_weight": 500,
-  "ui_font_family": "Iosevka KG Terminal",
-  "buffer_font_size": 19,
+  "ui_font_family": "DejaVu Sans Mono",
+  "buffer_font_size": 17,
   "ui_font_size": 16,
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "Doom Subtle Dark",
+    "dark": "Doom Gruvbox Simple",
   },
   "unstable.ui_density": "compact",
   "toolbar": {
     "agent_review": false,
-    "breadcrumbs": true,
+    "breadcrumbs": false,
     "code_actions": false,
     "quick_actions": false,
     "selections_menu": false,
@@ -153,6 +153,7 @@
     },
     "TypeScript": {
       "language_servers": ["typescript-ls"],
+      // "language_servers": [],
       "tab_size": 2,
       "formatter": "language_server",
       "inlay_hints": {
@@ -180,6 +181,7 @@
     },
     "TSX": {
       "language_servers": ["typescript-ls"],
+      // "language_servers": [],
       "tab_size": 2,
       "formatter": "language_server",
       "inlay_hints": {
@@ -220,7 +222,7 @@
     "toolbar.background": "#040400",
     "syntax": {
       "diagnostic": {
-        "color": "ff5050",
+        "color": "#ff5050",
       },
       "error": {
         "color": "#ff5050",

@@ -22,8 +22,8 @@
 ;; accept. For example:
 ;;
 ;; (setq doom-font (font-spec :family "Iosevka KG Terminal" :size 17 :weight 'semi-bold :width 'expanded)
-;; (setq doom-font (font-spec :family "Hack" :size 17)
-(setq doom-font (font-spec :family "Terminess Nerd Font" :size 19 :weight 'bold)
+;; (setq doom-font (font-spec :family "Hack" :size 18)
+(setq doom-font (font-spec :family "Lyth Mono" :size 17 :weight 'semi-bold)
       doom-symbol-font (font-spec :family "JetBrains Mono" :size 17)
       doom-variable-pitch-font (font-spec :family "Adwaita Sans" :size 17))
 
@@ -299,3 +299,9 @@
 ;;        ("M-g o" . dumb-jump-go-other-window)
 ;;        ("M-g b" . dumb-jump-back)
 ;;        ("M-g i" . dumb-jump-go-prompt)))
+
+;; In ~/.config/doom/config.el
+(unless (display-graphic-p)
+  (xterm-mouse-mode 1))
+
+;;; config.el ends here
