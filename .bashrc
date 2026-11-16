@@ -10,8 +10,8 @@ export OSH='/home/cozzycode/.oh-my-bash'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-# OSH_THEME="garo"
-OSH_THEME="candy"
+OSH_THEME="minimal"
+# OSH_THEME="nwinkler_random_colors"
 # OSH_THEME="rr"
 
 # If you set OSH_THEME to "random", you can ignore themes you don't like.
@@ -20,7 +20,7 @@ OSH_THEME="candy"
 # OMB_THEME_RANDOM_CANDIDATES=("font" "powerline-light" "minimal")
 
 # Uncomment the following line to use case-sensitive completion.
-# OMB_CASE_SENSITIVE="true"
+OMB_CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -167,3 +167,6 @@ export JAVA_HOME=/opt/android-studio/jbr
 export ANDROID_HOME="$HOME/Android/Sdk"
 # export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 export NDK_HOME=$HOME/Android/Sdk/ndk/30.0.15729638
+
+# opencode
+export PATH=/home/cozzycode/.opencode/bin:$PATH

@@ -43,6 +43,8 @@
 ;; Use `:pin' to specify a particular commit to install.
 ;; (package! builtin-package :pin "1a2b3c4d5e")
 
+(package! drag-stuff :pin "6d06d846cd37c052d79acd0f372c13006aa7e7c8")
+
 
 ;; Doom's packages are pinned to a specific commit and updated from release to
 ;; release. The `unpin!' macro allows you to unpin single packages...
@@ -51,10 +53,7 @@
 ;; (unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
-;; (package! pache-dark-theme)
-(package! drag-stuff)
 (package! breadcrumb)
-(package! imenu-list)
-;; (package! base16-theme)
-;; (package! gruber-darker-theme)
-(package! indent-bars)
+;; (package! highlight-indent-guides)
+
+;;; packages.el ends here

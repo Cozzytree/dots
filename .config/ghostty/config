@@ -1,33 +1,14 @@
-# This is the configuration file for Ghostty.
-#
-# This template file has been automatically created at the following
-# path since Ghostty couldn't find any existing config files on your system:
-#
-# /home/cozzycode/.config/ghostty/config
-#
-# The template does not set any default options, since Ghostty ships
-# with sensible defaults for all options. Users should only need to set
-# options that they want to change from the default.
-#
-# Run `ghostty +show-config --default --docs` to view a list of
-# all available config options and their default values.
-#
-# Additionally, each config option is also explained in detail
-# on Ghostty's website, at https://ghostty.org/docs/config.
-
-# Config syntax crash course
-# ==========================
-# # The config file consists of simple key-value pairs,
- # separated by equals signs.
-font-family = Lyth Mono
-font-style = SemiBold
-font-size = 13
+font-family = NotoMono Nerd Font Mono
+font-style = Regular
+font-size = 12
 gtk-tabs-location = bottom
-window-padding-x = 0
 window-decoration = server
 gtk-wide-tabs = false
-theme = GruvboxDarkHard
 gtk-titlebar = true
+adjust-cell-height = 1%
+
+window-padding-x = 0
+window-padding-y = 0
 
 gtk-custom-css = ~/.config/ghostty/tabs.css
 window-theme = ghostty
@@ -41,7 +22,34 @@ window-theme = ghostty
 # # Any line beginning with a # is a comment. It's not possible to put
 # # a comment after a config option, since it would be interpreted as a
 # # part of the value. For example, this will have a value of "#123abc":
-background = #040403
+# Dark theme with the classic vibrant Linux console palette
+background = #000000
+foreground = #cccccc
+
+background-opacity = 1
+
+selection-background = #ffffff
+selection-foreground = #000000
+cursor-color = #ff5555
+cursor-text = #000000
+
+# 16-color ANSI palette (Linux console)
+palette = 0=#000000
+palette = 1=#aa0000
+palette = 2=#00aa00
+palette = 3=#aa5500
+palette = 4=#0000aa
+palette = 5=#aa00aa
+palette = 6=#00aaaa
+palette = 7=#aaaaaa
+palette = 8=#555555
+palette = 9=#ff5555
+palette = 10=#55ff55
+palette = 11=#ffff55
+palette = 12=#5555ff
+palette = 13=#ff55ff
+palette = 14=#55ffff
+palette = 15=#ffffff
 
 # # Empty values are used to reset config keys to default.
 # key =
@@ -50,3 +58,6 @@ background = #040403
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
+
+term = xterm-256color
+gtk-single-instance = true

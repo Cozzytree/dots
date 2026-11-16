@@ -1,0 +1,8 @@
+animation_duration_ms 100
+
+blur disable
+corner_radius 0
+shadows disable
+
+gaps inner 0
+gaps outer 0

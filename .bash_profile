@@ -1,8 +1,8 @@
 # .bash_profile
-if [[ -f ~/.bashrc ]]; then
-  source ~/.bashrc
-fi
+# ~/.bash_profile
+[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 
-# Get the aliases and functions
-[ -f $HOME/.bashrc ] && . $HOME/.bashrc
-export PATH=$HOME/.local/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+export COLORTERM="truecolor"
+export QT_QPA_PLATFORMTHEME="gtk3"

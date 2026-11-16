@@ -10,8 +10,8 @@
     "A Gruvbox Hard theme retaining the custom simple background."
 
   ;; name        default   256       16
-  ((bg         '("#040400" nil       nil            ))
-   (bg-alt     '("#0a0a09" nil       nil            ))
+  ((bg         '("#030300" nil       nil            ))
+   (bg-alt     '("#030300" nil       nil            ))
    (base0      '("#0a0a09" "black"   "black"        ))
    (base1      '("#040400" "#1e1e1e" "brightblack"  ))
    (base2      '("#161615" "#2e2e2e" "brightblack"  ))
@@ -73,6 +73,7 @@
    (mode-line :background bg :foreground fg :box '(:line-width 1 :color "#3c3836" :style nil))
    (mode-line-inactive :background bg :foreground base5 :box '(:line-width 1 :color "#161615" :style nil))
    (header-line :background bg :foreground fg-alt :underline '(:color "#3c3836"))
+   (font-lock-comment-face :foreground comments)
 
    ;; Doom modeline specific colors to prevent blending
    (doom-modeline-buffer-file :foreground fg :weight 'bold)
@@ -90,7 +91,7 @@
    (markdown-pre-face :background base0)
    (eldoc-box-body :background bg)
    (eldoc-box-border :background base2)
-   (font-lock-function-name-face :foreground functions :weight 'semi-bold)
+   (font-lock-function-name-face :foreground functions :weight 'semi-bold :slant 'normal)
    (font-lock-type-face :foreground type :weight 'semi-bold)
    (font-lock-variable-name-face :foreground fg)
    (font-lock-property-name-face :foreground fg)

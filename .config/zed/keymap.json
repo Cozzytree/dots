@@ -15,7 +15,6 @@
    {
       "context": "Editor && vim_mode == insert",
       "bindings": {
-         "ctrl alt right":"pane::ActivateNextItem",
       },
    },
 ]

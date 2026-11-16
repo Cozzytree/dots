@@ -10,36 +10,55 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 set $mod Mod4
 
+set $term ghostty
+
+set $menu ghostty --class=otter.launcher -e otter-launcher
+for_window [class="otter.launcher"] floating enable
+
 # xrandr --output YOUR_DISPLAY_NAME --set "scaling mode" "Full"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font pango:Iosevka KG Terminal Md Ex 10
-font pango:jetBrains Mono SemiBold 9
+font pango:Liberation Mono Bold 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+#font pango:DejaVu Sans Mono
 
-exec --no-startup-id /usr/libexec/xfce-polkit
+# exec --no-startup-id xdg-desktop-portal
+# exec --no-startup-id xdg-desktop-portal-gtk
+exec --no-startup-id dbus-update-activation-environment --all
+
+exec --no-startup-id xset r rate 250 25
+exec --no-startup-id dunst
+
+# exec --no-startup-id /usr/libexec/xfce-polkit
 # exec --no-startup-id xrandr --output eDP --mode 1920x1080 --scale-from 1440x900
-exec --no-startup-id xrandr --output eDP --gamma 1:1:0.9
+# exec --no-startup-id xrandr --output eDP --gamma 1:1:0.95
 
 # Start PipeWire
 exec --no-startup-id pipewire
+
+# exec --no-startup-id redshift -O 4500
+exec --no-startup-id gammastep -O 4200K -g 1.0:1.0:0.95 -m randr
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#
+# DISABLED: xss-lock is not installed on this system, so this exec failed on
+# every startup. Locker lives in ~/.config/i3/scripts/lock.sh (i3lock-fancy);
+# use `loginctl lock-session` to lock on demand.
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 exec --no-startup-id blueman-applet
 
@@ -49,14 +68,12 @@ exec --no-startup-id emacs --daemon
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# exec --no-startup-id xsetroot -solid "#080806"
-exec --no-startup-id feh --bg-fill ~/Downloads/compagnons-a1s_aiT-myM-unsplash.jpg
+# exec --no-startup-id xsetroot -solid "#080806
+exec --no-startup-id feh --bg-fill ~/Downloads/ines-alvarez-fdez-7OGWqEf5u88-unsplash.jpg
 
-exec --no-startup-id copyq
+exec --no-startup-id QT_QPA_PLATFORMTHEME=gtk3 copyq
 
-exec --no-startup-id picom
-
-exec --no-startup-id redshift -O 4200
+# exec --no-startup-id picom
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -84,10 +101,10 @@ bindsym $mod+q kill
 bindsym $mod+c exec --no-startup-id copyq show
 for_window [class="copyq"] floating enable
 
-bindsym $mod+b exec ~/.local/share/zen/zen-bin
+bindsym $mod+b exec firefox
 
 bindsym $mod+n exec thunar
-
+bindsym $mod+Shift+q exec /home/cozzycode/.config/rofi/powermenu/type-2/powermenu.sh
 bindsym $mod+z exec /home/cozzycode/.config/i3/scripts/zoomer.sh focus
 bindsym $mod+Shift+z exec /home/cozzycode/.config/i3/scripts/zoomer.sh cursor
 bindsym $mod+x exec /home/cozzycode/.config/i3/scripts/zoomer.sh screen
@@ -95,7 +112,9 @@ bindsym $mod+x exec /home/cozzycode/.config/i3/scripts/zoomer.sh screen
 bindsym $mod+t exec --no-startup-id emacsclient -c
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id ~/.config/i3/scripts/dmenu.sh
+# bindsym $mod+d exec --no-startup-id ~/.config/i3/scripts/dmenu.sh
+bindsym $mod+d exec $menu
+# bindsym $mod+d exec --no-startup-id ghostty -e fsel
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -129,7 +148,12 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 bindsym $mod+l exec ~/.config/i3/scripts/lock.sh
-bindsym $mod+p exec flameshot gui
+
+bindsym Print exec flameshot gui
+bindsym $mod+Print exec flameshot full --clipboard
+bindsym $mod+p exec flameshot gui --clipboard
+
+bindsym $mod+Shift+b bar mode toggle
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -157,12 +181,20 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# default_border normal
+
+# Middle click titlebar closes window
+# bindsym --release button2 kill
+
+# Right click titlebar toggles floating
+# bindsym button3 floating toggle
+
 default_border pixel 1
 default_floating_border pixel 1
 
-client.focused    #505787  #505787     #ffffff   #505787     #505787
-client.unfocused  #0f0f0c  #0f0f0c     #efefef   #0f0f0c     #0f0f0c
-# client.focused_inactive #45475a #45475a #cdd6f4 #45475a #45475a
+client.focused    #040302  #308aac     #040302   #404040     #404040
+client.unfocused  #101010  #040302     #308aac   #101010     #101010
+client.focused_inactive  #101010  #040302     #20efef   #101010     #101010
 # client.urgent     #f38ba8  #f38ba8     #11111b   #f38ba8     #f38ba8
 # client.placeholder #6c7086 #6c7086     #ffffff   #6c7086     #6c7086
 client.background #0f0f0c
@@ -241,10 +273,14 @@ bindsym $mod+r mode "resize"
 # for_window [class="dev.zed.Zed"] border正常 0
 # for_window [class="dev.zed.Zed"] border none
 for_window [class="zoomer"] floating enable
+for_window [class="Blueman-manager"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="pavucontrol"] floating enable
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        # status_command i3status
-        status_command i3blocks -c /home/$USER/.config/i3blocks/i3blocks.conf
+    position top
+    # status_command i3status
+    status_command i3blocks -c /home/$USER/.config/i3blocks/i3blocks.conf
 }

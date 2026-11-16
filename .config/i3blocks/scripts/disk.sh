@@ -1,29 +1,34 @@
 #!/usr/bin/env sh
-DIR="${DIR:-$BLOCK_INSTANCE}"
-DIR="${DIR:-$HOME}"
-ALERT_LOW="${ALERT_LOW:-$1}"
-ALERT_LOW="${ALERT_LOW:-10}" # color will turn red under this value (default: 10%)
 
-LOCAL_FLAG="-l"
-if [ "$1" = "-n" ] || [ "$2" = "-n" ]; then
-    LOCAL_FLAG=""
-fi
+DIR="${BLOCK_INSTANCE:-$HOME}"
+ALERT_LOW="${ALERT_LOW:-10}"
+LABEL="${LABEL:-}"
 
-df -h -P $LOCAL_FLAG "$DIR" | awk -v label="$LABEL" -v alert_low=$ALERT_LOW '
-/\/.*/ {
-	# full text
-	print label $4
-	# short text
-	print label $4
-	use=$5
-	# no need to continue parsing
-	exit 0
-}
-END {
-	gsub(/%$/,"",use)
-	if (100 - use < alert_low) {
-		# color
-		print "#FF0000"
-	}
-}
-'
+df -hP "$DIR" | awk -v label="$LABEL" -v alert_low="$ALERT_LOW" '
+NR==2 {
+    avail = $4
+    used  = $5
+    gsub(/%/, "", used)
+
+    free = 100 - used
+
+    if (free <= alert_low) {
+        color = "#f7768e"    # red
+        icon = "󰪥"
+    } else if (free <= 25) {
+        color = "#e0af68"    # yellow
+        icon = "󰪤"
+    } else {
+        color = "#9ece6a"    # green
+        icon = "󰋊"
+    }
+
+    # full text
+    print icon " " avail
+
+    # short text
+    print icon " " avail
+
+    # color
+    print color
+}'

@@ -10,7 +10,7 @@ BG="#040402"
 FG="#efefef"
 SEL_BG="#303029"
 SEL_FG="#efefef"
-FONT="Terminus Nerd Font:size=10"
+FONT="LythMonoNerdFont Medium:size=11"
 
 dmenu_run -i \
     -fn "$FONT" \
@@ -18,4 +18,4 @@ dmenu_run -i \
     -nf "$FG" \
     -sb "$SEL_BG" \
     -sf "$SEL_FG" \
-    -l 10
+    -l 20

@@ -1,9 +1,32 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-# File to track notification ID so popups replace each other
-ID_FILE="/tmp/bright_notif_id"
+STATE_FILE="${STATE_FILE:-${XDG_RUNTIME_DIR:-/tmp}/i3blocks-brightness.state}"
 
-# Process the button actions first
+read_state() {
+	old_bright=""
+	last_id=""
+	if [ -f "$STATE_FILE" ]; then
+		old_bright=$(sed -n '1p' "$STATE_FILE")
+		last_id=$(sed -n '2p' "$STATE_FILE")
+	fi
+}
+
+write_state() {
+	printf '%s\n%s\n' "$1" "$2" > "$STATE_FILE"
+}
+
+send_notification() {
+    local args=()
+    [ -n "$last_id" ] && args+=(--replace-id="$last_id")
+    last_id=$(dunstify \
+        --app-name=i3blocks \
+        --urgency=low \
+        --icon=display-brightness \
+        --expire-time=5000 \
+        "${args[@]}" \
+        "Brightness" "$msg" --print-id 2>/dev/null)
+}
+
 case "$BLOCK_BUTTON" in
     4)
         brightnessctl set +5% >/dev/null
@@ -13,20 +36,18 @@ case "$BLOCK_BUTTON" in
         ;;
 esac
 
-# Read the updated brightness percentage
-percent=$(brightnessctl -m | cut -d',' -f4)
-msg="    ${percent}"
+read_state
+cur=$(brightnessctl -m | cut -d',' -f4)
+msg="$cur"
 
-# Print to stdout for i3blocks
-echo "$msg"
+echo "󰃠 $msg"
 
-# Send the desktop notification
-if [ -f "$ID_FILE" ]; then
-    last_id=$(cat "$ID_FILE")
-    # Reuse existing ID to prevent stacking windows
-    new_id=$(notify-send -p -r "$last_id" -i "display-brightness" "Brightness" "$msg")
-else
-    new_id=$(notify-send -p -i "display-brightness" "Brightness" "$msg")
+if [ -z "$old_bright" ]; then
+    write_state "$cur" ""
+    exit 0
 fi
 
-echo "$new_id" > "$ID_FILE"
+if [ "$old_bright" != "$cur" ]; then
+    send_notification
+    write_state "$cur" "$last_id"
+fi
